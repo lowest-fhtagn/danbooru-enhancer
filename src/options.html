@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Options</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root">
+      <header class="user-select-none">
+        <img src="./icons/icon.svg" width="32" />
+        <span class="big">Danbooru Enhancer</span>
+      </header>
+      <form>
+        <fieldset>
+          <legend>Settings</legend>
+          <div class="flex-column">
+            <div>
+              <input type="checkbox" id="open-in-new-tab" checked />
+              <label for="open-in-new-tab"
+                >Open context menu options in new tab</label
+              >
+            </div>
+            <div>
+              <input type="checkbox" id="move-to-new-tab" checked />
+              <label for="move-to-new-tab"
+                >Immediately move to newly created tab</label
+              >
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <form>
+        <fieldset>
+          <legend>Danbooru Settings</legend>
+          <div class="flex-column">
+            <div>
+              <input type="checkbox" id="sticky-danbooru-header" checked />
+              <label for="sticky-danbooru-header">Sticky header</label>
+            </div>
+            <div>
+              <input type="checkbox" id="sticky-danbooru-sidebar" checked />
+              <label for="sticky-danbooru-sidebar">Sticky sidebar</label>
+            </div>
+            <div>
+              <input type="checkbox" id="display-logo" checked />
+              <label for="display-logo">Display logo</label>
+            </div>
+            <div>
+              <input type="checkbox" id="show-switch-server" checked />
+              <label for="show-switch-server"
+                >Show "Switch to Danbooru/Safebooru" on the header</label
+              >
+            </div>
+            <span class="small"
+              >You need to refresh the page in order for the changes to
+              show.</span
+            >
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <script src="options.js"></script>
+  </body>
+</html>

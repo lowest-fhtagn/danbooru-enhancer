@@ -1,0 +1,42 @@
+@use "node_modules/modern-normalize/modern-normalize.css";
+
+body {
+  background-color: #23222b;
+  color: #fafafa;
+  margin: 0.5em;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+  margin: 0.5em;
+}
+
+header {
+  column-gap: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+span {
+  &.small {
+    font-size: 0.8em;
+  }
+
+  &.big {
+    font-size: 1.2em;
+  }
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5em;
+}
+
+.user-select-none {
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
