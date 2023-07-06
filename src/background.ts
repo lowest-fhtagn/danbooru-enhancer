@@ -3,8 +3,6 @@ import searchArtist from "./search_artist";
 import * as utils from "./utils";
 
 const POST_TO_DANBOORU_URL = "https://danbooru.donmai.us/uploads/new?url=";
-const SEARCH_ARTIST_URL =
-  "https://danbooru.donmai.us/artists?search%5Burl_matches%5D=";
 const ALLOWED_PROTOCOLS = ["*://*/*"];
 
 const MenuId = {
@@ -107,7 +105,51 @@ browser.contextMenus.onClicked.addListener(
           return;
         }
 
-        utils.openLink(SEARCH_ARTIST_URL + encodeURIComponent(url.href));
+        fetch(
+          "https://danbooru.donmai.us/artists.json?search%5Burl_matches%5D=" +
+            encodeURIComponent(url.href)
+        )
+          .then((t_response: Response): Promise<any> => {
+            if (!t_response.ok) {
+              throw Error(t_response.statusText);
+            }
+
+            return t_response.json();
+          })
+          .then((t_json: any) => {
+            if (!Array.isArray(t_json)) {
+              throw Error("Invalid JSON response.");
+            }
+
+            if (!t_json.length) {
+              throw Error("This artist does not exist in Danbooru's database.");
+            }
+
+            const artist_id = t_json[0].id;
+            if (typeof artist_id !== "number") {
+              throw Error("Invalid JSON response.");
+            }
+
+            // if (t_json.length > 1) {
+            //   const artist_name = t_json[0].name;
+            //   if (typeof artist_name === "string") {
+            //     console.warn(
+            //       `Artist "${artist_name}" (id: ${artist_id}) has multiple artist entries.`
+            //     );
+            //   } else {
+            //     console.warn(
+            //       `This artist (id: ${artist_id}) has multiple artist entries.`
+            //     );
+            //   }
+            // }
+
+            utils.openLink(`https://danbooru.donmai.us/artists/${artist_id}`);
+          })
+          .catch((reason: any) => {
+            if (reason instanceof Error) {
+              utils.errorNotif(reason.message);
+            }
+          });
       }
     }
   }
