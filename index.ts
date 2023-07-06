@@ -7,7 +7,7 @@ import * as sass from "sass";
  */
 const name = "Danbooru Enhancer";
 const description = "Various tweaks to assist Danbooru users/contributors.";
-const version = "0.1.0";
+const version = "0.1.1";
 const extension_id = "{9e3b8949-1edc-40f5-a56a-26c38e23838f}";
 
 const is_minify = true;
