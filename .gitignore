@@ -1,11 +1,11 @@
 *
 
+!.editorconfig
 !.gitattributes
 !.gitignore
 !.prettierignore
 !.prettierrc.json
 !bun.d.ts
-!*.code-workspace
 !index.ts
 !LICENSE
 !package.json
