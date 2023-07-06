@@ -17,6 +17,17 @@ This extension is Firefox only at the moment. Chrome extension may be planned in
 
 And more to come.
 
+## Download
+
+### Official
+
+- [Firefox](https://addons.mozilla.org/addon/danbooru_enhancer/)
+- ~~Chrome~~ (planned)
+
+### Self Installation
+
+- [GitHub release](https://github.com/lowest-fhtagn/danbooru-enhancer/releases)
+
 ## Building
 
 1. Install [bun](https://bun.sh/)
