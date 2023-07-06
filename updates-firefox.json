@@ -1,0 +1,12 @@
+{
+  "addons": {
+    "extension_id": {
+      "updates": [
+        {
+          "version": "0.1.0",
+          "update_link": "https://github.com/lowest-fhtagn/danbooru-enhancer/releases/download/0.1.0/danbooru-enhancer-0.1.0.firefox.signed.xpi"
+        }
+      ]
+    }
+  }
+}

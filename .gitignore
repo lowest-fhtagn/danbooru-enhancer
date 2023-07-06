@@ -11,6 +11,7 @@
 !package.json
 !README.*
 !tsconfig.json
+!updates-firefox.json
 
 !assets
 !assets/**

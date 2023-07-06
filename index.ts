@@ -8,6 +8,7 @@ import * as sass from "sass";
 const name = "Danbooru Enhancer";
 const description = "Various tweaks to assist Danbooru users/contributors.";
 const version = "0.1.0";
+const extension_id = "{9e3b8949-1edc-40f5-a56a-26c38e23838f}";
 
 const is_minify = true;
 
@@ -57,11 +58,39 @@ Bun.write(
       page: "options.html",
     },
 
+    browser_specific_settings: {
+      gecko: {
+        id: extension_id,
+        update_url:
+          "https://raw.githubusercontent.com/lowest-fhtagn/danbooru-enhancer/master/updates-firefox.json",
+      },
+    },
+
     icons: {
       48: "icons/icon-48.png",
       96: "icons/icon-96.png",
     },
   })
+);
+
+Bun.write(
+  path.join(import.meta.dir, "updates-firefox.json"),
+  JSON.stringify(
+    {
+      addons: {
+        extension_id: {
+          updates: [
+            {
+              version: version,
+              update_link: `https://github.com/lowest-fhtagn/danbooru-enhancer/releases/download/${version}/danbooru-enhancer-${version}.firefox.signed.xpi`,
+            },
+          ],
+        },
+      },
+    },
+    undefined,
+    2
+  )
 );
 
 Bun.build({
