@@ -44,8 +44,6 @@ const MenuId = {
   }) as string,
 } as const;
 
-const NOTIFICATIONS_ERROR_TITLE = "Danbooru Enhancer: Error";
-
 browser.contextMenus.onClicked.addListener(
   (t_info: browser.contextMenus.OnClickData): void => {
     switch (t_info.menuItemId) {
@@ -66,11 +64,9 @@ browser.contextMenus.onClicked.addListener(
         })();
 
         if (!url_string || !url_string.length) {
-          browser.notifications.create("", {
-            type: "basic",
-            title: NOTIFICATIONS_ERROR_TITLE,
-            message: "Cannot process URL; URL is either undefined or is empty.",
-          });
+          utils.errorNotif(
+            "Cannot process URL; URL is either undefined or is empty."
+          );
           return;
         }
 
@@ -80,11 +76,7 @@ browser.contextMenus.onClicked.addListener(
           url = new URL(url_string);
           postToDanbooru(url);
         } catch (error_object) {
-          browser.notifications.create("", {
-            type: "basic",
-            title: NOTIFICATIONS_ERROR_TITLE,
-            message: (error_object as Error).message,
-          });
+          utils.errorNotif((error_object as Error).message);
           return;
         }
 
@@ -99,11 +91,9 @@ browser.contextMenus.onClicked.addListener(
             : t_info.pageUrl;
 
         if (!url_string || !url_string.length) {
-          browser.notifications.create("", {
-            type: "basic",
-            title: NOTIFICATIONS_ERROR_TITLE,
-            message: "Cannot process URL; URL is either undefined or is empty.",
-          });
+          utils.errorNotif(
+            "Cannot process URL; URL is either undefined or is empty."
+          );
           return;
         }
 
@@ -113,11 +103,7 @@ browser.contextMenus.onClicked.addListener(
           url = new URL(url_string);
           searchArtist(url);
         } catch (error_object) {
-          browser.notifications.create("", {
-            type: "basic",
-            title: NOTIFICATIONS_ERROR_TITLE,
-            message: (error_object as Error).message,
-          });
+          utils.errorNotif((error_object as Error).message);
           return;
         }
 

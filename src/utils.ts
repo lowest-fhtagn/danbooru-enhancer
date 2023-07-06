@@ -7,6 +7,17 @@ export function cleanUrl(t_url: URL): void {
   t_url.username = "";
 }
 
+export function errorNotif(
+  t_err_message: string,
+  t_err_title = "Danbooru Enhancer: Error"
+): Promise<string> {
+  return browser.notifications.create({
+    type: "basic",
+    title: t_err_title,
+    message: t_err_message,
+  });
+}
+
 export function openLink(t_url_string: string): void {
   browser.storage.local
     .get(["open_in_new_tab", "move_to_new_tab"])
