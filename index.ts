@@ -82,7 +82,7 @@ Bun.write(
           updates: [
             {
               version: version,
-              update_link: `https://github.com/lowest-fhtagn/danbooru-enhancer/releases/download/${version}/danbooru-enhancer-${version}.firefox.signed.xpi`,
+              update_link: `https://github.com/lowest-fhtagn/danbooru-enhancer/releases/download/v${version}/danbooru-enhancer-${version}.firefox.signed.xpi`,
             },
           ],
         },
