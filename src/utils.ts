@@ -1,4 +1,4 @@
-export function cleanUrl(t_url: URL): void {
+export function cleanUrl(t_url: URL) {
   t_url.hash = "";
   t_url.password = "";
   t_url.port = "";
@@ -18,7 +18,7 @@ export function errorNotif(
   });
 }
 
-export function openLink(t_url_string: string): void {
+export function openLink(t_url_string: string) {
   browser.storage.local
     .get(["open_in_new_tab", "move_to_new_tab"])
     .then((value: { [key: string]: any }): void => {

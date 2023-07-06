@@ -29,29 +29,27 @@ Promise.resolve().then((): Promise<void> | undefined => {
 /**
  * Hide the Danbooru logo (default: show).
  */
-Promise.resolve().then((): void => {
+Promise.resolve().then(() => {
   const header = document.getElementById("app-name-header");
   if (!header) return;
 
-  browser.storage.local
-    .get("display_logo")
-    .then((t_items: StorageObject): void => {
-      switch (typeof t_items.display_logo) {
-        case "boolean":
-          if (t_items.display_logo) return;
-          break;
-        default:
-          return;
-      }
+  browser.storage.local.get("display_logo").then((t_items: StorageObject) => {
+    switch (typeof t_items.display_logo) {
+      case "boolean":
+        if (t_items.display_logo) return;
+        break;
+      default:
+        return;
+    }
 
-      header.style.display = "none";
-    });
+    header.style.display = "none";
+  });
 });
 
 /**
  * Add "Switch to Danbooru/Safebooru" button onto the header (default: show).
  */
-Promise.resolve().then((): void => {
+Promise.resolve().then(() => {
   if (document.location.hostname.startsWith("testbooru")) {
     return;
   }
@@ -76,7 +74,7 @@ Promise.resolve().then((): void => {
     .then((t_enable: boolean): StorageObject | undefined =>
       t_enable ? browser.storage.local.get("last_unsafe_subdomain") : undefined
     )
-    .then((t_items?: StorageObject): void => {
+    .then((t_items?: StorageObject) => {
       if (!t_items) return;
 
       if (is_safebooru) {
@@ -117,7 +115,7 @@ Promise.resolve().then((): void => {
     });
 });
 
-Promise.resolve().then((): void => {
+Promise.resolve().then(() => {
   const header_element = document.getElementById("top");
   if (!header_element) return;
 
@@ -125,7 +123,7 @@ Promise.resolve().then((): void => {
 
   browser.storage.local
     .get("sticky_danbooru_header")
-    .then((t_value: StorageObject): void => {
+    .then((t_value: StorageObject) => {
       switch (typeof t_value.sticky_danbooru_header) {
         case "boolean":
           if (false === t_value.sticky_danbooru_header) return;
@@ -140,7 +138,7 @@ Promise.resolve().then((): void => {
 
       is_sticky_header = true;
     })
-    .then((): void => {
+    .then(() => {
       /**
        * Ensure that this script will only work on
        * "https://*.donmai.us/posts".
@@ -208,7 +206,7 @@ Promise.resolve().then((): void => {
          */
         browser.storage.local
           .get("tag_list_details_toggled")
-          .then((t_value: StorageObject): void => {
+          .then((t_value: StorageObject) => {
             switch (typeof t_value.tag_list_details_toggled) {
               case "boolean":
                 details_element.open = t_value.tag_list_details_toggled;
@@ -218,7 +216,7 @@ Promise.resolve().then((): void => {
         /**
          * Save the <details> element's 'open' state in the local storage.
          */
-        details_element.addEventListener("toggle", (): void => {
+        details_element.addEventListener("toggle", () => {
           browser.storage.local.set({
             tag_list_details_toggled: details_element.open,
           });
@@ -238,7 +236,7 @@ Promise.resolve().then((): void => {
 
       browser.storage.local
         .get("sticky_danbooru_sidebar")
-        .then((t_object: StorageObject): void => {
+        .then((t_object: StorageObject) => {
           switch (typeof t_object.sticky_danbooru_sidebar) {
             case "boolean":
               if (false === t_object.sticky_danbooru_sidebar) return;
@@ -248,7 +246,7 @@ Promise.resolve().then((): void => {
           sticky_div.style.top = "1em";
 
           if (is_sticky_header) {
-            function updateStickySidebarPosition(): void {
+            function updateStickySidebarPosition() {
               const header_element = document.getElementById("top");
               if (!header_element) return;
 
@@ -267,7 +265,7 @@ Promise.resolve().then((): void => {
             updateStickySidebarPosition();
 
             let timeout_id: number | undefined = undefined;
-            window.addEventListener("resize", function (): void {
+            window.addEventListener("resize", function () {
               this.clearTimeout(timeout_id);
               timeout_id = this.setTimeout(updateStickySidebarPosition, 500);
             });

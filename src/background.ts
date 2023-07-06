@@ -43,7 +43,7 @@ const MenuId = {
 } as const;
 
 browser.contextMenus.onClicked.addListener(
-  (t_info: browser.contextMenus.OnClickData): void => {
+  (t_info: browser.contextMenus.OnClickData) => {
     switch (t_info.menuItemId) {
       case MenuId.PostToDanbooruImage:
       case MenuId.PostToDanbooruLink:

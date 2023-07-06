@@ -8,7 +8,7 @@ const FANBOX_RE = /^(?:\w*\.)?fanbox\.cc$/i;
 const FANTIA_RE = /^(?:www\.)?fantia\.jp$/i;
 const FANTIA_FANCLUBS_RE = /^\/fanclubs\/(\d+)(?:\/.*)?$/i;
 
-export default function (t_url: URL): void {
+export default function (t_url: URL) {
   let result: RegExpExecArray | null;
 
   if (regex.PIXIV.test(t_url.hostname)) {

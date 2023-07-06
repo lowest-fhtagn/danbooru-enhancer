@@ -1,14 +1,14 @@
 type StorageObject = { [key: string]: any };
 
-function saveToStorage(t_element: HTMLInputElement, t_key: string): void {
-  t_element.addEventListener("input", (): void => {
+function saveToStorage(t_element: HTMLInputElement, t_key: string) {
+  t_element.addEventListener("input", () => {
     const t_object: { [key: string]: boolean } = {};
     t_object[t_key] = t_element.checked;
     browser.storage.local.set(t_object);
   });
 }
 
-Promise.resolve().then((): void => {
+Promise.resolve().then(() => {
   const open_in_new_tab = document.getElementById(
     "open-in-new-tab"
   )! as HTMLInputElement;
@@ -29,7 +29,7 @@ Promise.resolve().then((): void => {
     "display-logo"
   )! as HTMLInputElement;
 
-  open_in_new_tab.addEventListener("input", (): void => {
+  open_in_new_tab.addEventListener("input", () => {
     move_to_new_tab.disabled = !open_in_new_tab.checked;
     browser.storage.local.set({ open_in_new_tab: open_in_new_tab.checked });
   });
@@ -40,7 +40,7 @@ Promise.resolve().then((): void => {
   saveToStorage(show_switch_server, "show_switch_server");
   saveToStorage(display_logo, "display_logo");
 
-  browser.storage.local.get().then((t_value: StorageObject): void => {
+  browser.storage.local.get().then((t_value: StorageObject) => {
     let flag: any;
     if (typeof (flag = t_value.open_in_new_tab) === "boolean")
       open_in_new_tab.checked = flag;

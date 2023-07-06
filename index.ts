@@ -125,7 +125,7 @@ const html_minifier_options: htmlMinifier.Options = {
   useShortDoctype: true,
 };
 
-Promise.resolve().then((): void => {
+Promise.resolve().then(() => {
   for (let i = 0; i < html_files.length; i += 1) {
     Bun.file(html_files[i])
       .text()
@@ -134,19 +134,19 @@ Promise.resolve().then((): void => {
           ? htmlMinifier.minify(t_value, html_minifier_options)
           : Promise.resolve(t_value);
       })
-      .then((t_value: string): void => {
+      .then((t_value: string) => {
         const basename = path.basename(html_files[i]);
 
         Bun.write(path.join(output_directory, basename), t_value);
       })
-      .catch((reason: any): void => {
+      .catch((reason: any) => {
         if (!(reason instanceof Error)) return;
         console.error(reason.message);
       });
   }
 });
 
-Promise.resolve().then((): void => {
+Promise.resolve().then(() => {
   const [file_name] = path.basename(sass_file).split(".", 1);
 
   if (!file_name.length) {
